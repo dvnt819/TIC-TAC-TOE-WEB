@@ -1,0 +1,49 @@
+.main-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.water-background{
+  background-color: #4b495f; 
+}
+.game-heading{
+  padding: 5px 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 40px;
+}
+
+.square-wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+
+.left, .right{
+  height: 30px;
+  width: 120px;
+  background-color: red;
+  text-align: center;
+  padding-top: 10px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  
+}
+
+.left{
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.right{
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+}
+
+.move-detection{
+  display: flex;
+  justify-content: space-between;
+}
