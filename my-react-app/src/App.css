@@ -55,3 +55,13 @@
 }
 
 
+.playOnline{
+  background-color: rgb(211, 185, 57);
+  font-size: 60px;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  font-weight: 1000px;
+  margin-top: 30vh;
+  padding: 10px;
+}

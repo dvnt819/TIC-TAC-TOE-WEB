@@ -45,6 +45,7 @@ const circleSvg = (
 
 const Square=(
     {
+        finishedArrayState,
         setFinishState,
         finishedState,
         currentPlayer,
@@ -82,7 +83,7 @@ const Square=(
             })
         }
     }
-    return <div onClick={clickOnSquare} className={`square ${finishedState ? 'not-allowed' : ''}`}>{icon}</div>
+    return <div onClick={clickOnSquare} className={`square ${finishedState ? 'not-allowed' : ''} ${finishedArrayState.includes(id) ? finishedState+'-won' :""}`}>{icon}</div>
     
 }
 

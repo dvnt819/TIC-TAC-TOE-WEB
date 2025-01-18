@@ -13,16 +13,20 @@ const App=()=>{
   const [gameState,setGameState]=useState(renderFrom);
   const [currentPlayer,setCurrentPlayer]=useState('circle');
   const [finishedState,setFinishState]=useState(false);
+  const [finishedArrayState,setFinishedArrayState]=useState([]);
+  const [playOnline,setPlayOnline]=useState(false);
 
   const checkWinner=()=>{
     for (let row = 0; row < gameState.length; row++) {
       if(gameState[row][0]=== gameState[row][1] && gameState[row][1] === gameState[row][2]){
+        setFinishedArrayState([row*3 + 0,row*3+1,row*3+2])
         return gameState[row][2]
       }
     }
 
     for (let col = 0; col < gameState.length; col++) {
       if(gameState[0][col]=== gameState[1][col] && gameState[1][col] === gameState[2][col]){
+        setFinishedArrayState([0*3+col,1*3+col,2*3+col])
         return gameState[2][col]
       }
     }
@@ -56,6 +60,13 @@ const App=()=>{
     
   },[gameState])
 
+  if(!playOnline){
+    return<div className='main-div'>
+      <button className='playOnline'>Play Online</button>
+    </div>
+  }
+
+
   return (
     <div className='main-div'>
       <div>
@@ -68,7 +79,7 @@ const App=()=>{
           {
             gameState.map((arr,rowIndex)=>
             arr.map((e,colIndex)=>{
-              return <Square finishedState={finishedState} currentPlayer={currentPlayer} setCurrentPlayer={setCurrentPlayer} setGameState={setGameState} id={rowIndex*3+colIndex} key={rowIndex*3+colIndex}/>
+              return <Square finishedArrayState={finishedArrayState} finishedState={finishedState} currentPlayer={currentPlayer} setCurrentPlayer={setCurrentPlayer} setGameState={setGameState} id={rowIndex*3+colIndex} key={rowIndex*3+colIndex}/>
             }))
           }
         </div>

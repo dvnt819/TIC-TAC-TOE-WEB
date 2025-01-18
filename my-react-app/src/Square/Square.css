@@ -12,3 +12,11 @@
 .not-allowed{
     cursor: not-allowed !important;
 }
+
+.circle-won{
+    background-color: rgb(248, 113, 136);
+}
+
+.cross-won{
+    background-color: rgb(84, 156, 222);
+}
