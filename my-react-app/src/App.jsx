@@ -2,6 +2,9 @@ import React, { useEffect } from 'react'
 import './App.css'
 import Square from './Square/Square'
 import { useState } from 'react'
+import {io} from 'socket.io-client'
+import Swal from 'sweetalert2';
+
 
 const renderFrom=[
   [1,2,3],
@@ -15,6 +18,8 @@ const App=()=>{
   const [finishedState,setFinishState]=useState(false);
   const [finishedArrayState,setFinishedArrayState]=useState([]);
   const [playOnline,setPlayOnline]=useState(false);
+  const [socket,setSocket]=useState(null);
+  const [playerName,setPlayerName]=useState('')
 
   const checkWinner=()=>{
     for (let row = 0; row < gameState.length; row++) {
@@ -53,16 +58,43 @@ const App=()=>{
 
   useEffect(()=>{
     const winner=checkWinner()
-
     if(winner){
       setFinishState(winner)
     }
-    
   },[gameState])
+
+  const takePlayerName= async()=>{
+    const result = await Swal.fire({
+      title: "Enter your name",
+      input: "text",
+      
+      showCancleButton: true,
+      inputValidator:(value)=>{
+        if(!value){
+          return "You need to write something!";
+        }
+      }
+    })
+    return result
+  }
+
+  socket?.on('connect',function(){
+    setPlayOnline(true)
+  });
+
+  async function playOnlineClick(){
+
+      const result=await takePlayerName()
+      log(result)
+      const newSocket = io('http://localhost:3000',{
+      autoConnect:true,
+    })
+    setSocket(newSocket);
+  }
 
   if(!playOnline){
     return<div className='main-div'>
-      <button className='playOnline'>Play Online</button>
+      <button onClick={playOnlineClick} className='playOnline'>Play Online</button>
     </div>
   }
 
